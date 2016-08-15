@@ -4,6 +4,9 @@ MAINTAINER Nico Mittenzwey <nico.mittenzwey+docker@gmail.com>
 RUN 	mkdir /usr/src/stream/ && \
 	cd /usr/src/stream/ && \
 	curl -OSL https://www.cs.virginia.edu/stream/FTP/Code/stream.c
-# Prepare startup file
 
-### TODO : FIND A GOOD WAY TO ADD THIS TO DOCKER IMAGE AND START IT RIGHT AWAY
+# Get startup file
+RUN	curl -OSL https://raw.githubusercontent.com/hpc-training/docker/master/benchmarks/centos-gcc-stream/run-benchmark.sh && chmod a+x ./run-benchmark.sh
+
+# Command to start when image is run
+CMD ["./run-benchmark.sh"]
